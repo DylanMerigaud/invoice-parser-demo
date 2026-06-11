@@ -1,0 +1,84 @@
+{
+  "model": "claude-sonnet-4-6",
+  "ranAt": "2026-06-11T19:26:56.426Z",
+  "samples": 9,
+  "fieldAccuracy": 1,
+  "fieldsCorrect": 95,
+  "fieldsTotal": 95,
+  "anomaly": {
+    "precision": 1,
+    "recall": 1,
+    "f1": 1,
+    "tp": 2,
+    "fp": 0,
+    "fn": 0
+  },
+  "perField": [
+    {
+      "field": "vendor.name",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    },
+    {
+      "field": "vendor.address",
+      "accuracy": 1,
+      "correct": 8,
+      "total": 8
+    },
+    {
+      "field": "vendor.taxId",
+      "accuracy": 1,
+      "correct": 8,
+      "total": 8
+    },
+    {
+      "field": "invoiceNumber",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    },
+    {
+      "field": "issueDate",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    },
+    {
+      "field": "dueDate",
+      "accuracy": 1,
+      "correct": 8,
+      "total": 8
+    },
+    {
+      "field": "currency",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    },
+    {
+      "field": "subtotal",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    },
+    {
+      "field": "tax",
+      "accuracy": 1,
+      "correct": 8,
+      "total": 8
+    },
+    {
+      "field": "total",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    },
+    {
+      "field": "lineItems",
+      "accuracy": 1,
+      "correct": 9,
+      "total": 9
+    }
+  ]
+}

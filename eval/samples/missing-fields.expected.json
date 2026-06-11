@@ -1,0 +1,32 @@
+{
+  "stresses": "Missing optional fields (no tax, due date, or address)",
+  "expected": {
+    "vendor": {
+      "name": "J. Okafor Photography",
+      "address": null,
+      "taxId": null
+    },
+    "invoiceNumber": "2024-017",
+    "issueDate": "2024-05-09",
+    "dueDate": null,
+    "currency": "USD",
+    "lineItems": [
+      {
+        "description": "Event coverage, half day",
+        "qty": 1,
+        "unitPrice": 650,
+        "amount": 650
+      },
+      {
+        "description": "Edited photos (delivery)",
+        "qty": 1,
+        "unitPrice": 150,
+        "amount": 150
+      }
+    ],
+    "subtotal": 800,
+    "tax": null,
+    "total": 800
+  },
+  "expectedAnomalies": []
+}

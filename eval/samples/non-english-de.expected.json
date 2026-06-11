@@ -1,0 +1,38 @@
+{
+  "stresses": "German-language invoice (Rechnung, MwSt.)",
+  "expected": {
+    "vendor": {
+      "name": "Becker Bürotechnik",
+      "address": "Lindenallee 7, 50667 Köln",
+      "taxId": "DE246802468"
+    },
+    "invoiceNumber": "RG-2024-0334",
+    "issueDate": "2024-04-18",
+    "dueDate": "2024-05-02",
+    "currency": "EUR",
+    "lineItems": [
+      {
+        "description": "Bürostuhl ergonomisch",
+        "qty": 4,
+        "unitPrice": 189.9,
+        "amount": 759.6
+      },
+      {
+        "description": "Schreibtischlampe LED",
+        "qty": 4,
+        "unitPrice": 39.5,
+        "amount": 158
+      },
+      {
+        "description": "Lieferung",
+        "qty": 1,
+        "unitPrice": 25,
+        "amount": 25
+      }
+    ],
+    "subtotal": 942.6,
+    "tax": 179.09,
+    "total": 1121.69
+  },
+  "expectedAnomalies": []
+}

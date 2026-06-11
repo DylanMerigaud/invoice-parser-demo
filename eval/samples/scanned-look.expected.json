@@ -1,0 +1,44 @@
+{
+  "stresses": "Scanned/skewed low-contrast render",
+  "expected": {
+    "vendor": {
+      "name": "Riverside Auto Parts",
+      "address": "812 Industrial Rd, Cleveland, OH 44109",
+      "taxId": "US-34-5566778"
+    },
+    "invoiceNumber": "RAP-5589",
+    "issueDate": "2024-02-29",
+    "dueDate": "2024-03-30",
+    "currency": "USD",
+    "lineItems": [
+      {
+        "description": "Brake pads, ceramic (set)",
+        "qty": 4,
+        "unitPrice": 48,
+        "amount": 192
+      },
+      {
+        "description": "Oil filter",
+        "qty": 10,
+        "unitPrice": 7.25,
+        "amount": 72.5
+      },
+      {
+        "description": "Synthetic oil, 5qt",
+        "qty": 6,
+        "unitPrice": 31.99,
+        "amount": 191.94
+      },
+      {
+        "description": "Labor",
+        "qty": 3,
+        "unitPrice": 95,
+        "amount": 285
+      }
+    ],
+    "subtotal": 741.44,
+    "tax": 59.32,
+    "total": 800.76
+  },
+  "expectedAnomalies": []
+}

@@ -1,0 +1,92 @@
+{
+  "stresses": "Multi-page invoice (line items span 2 pages)",
+  "expected": {
+    "vendor": {
+      "name": "Cascade Wholesale Foods",
+      "address": "4400 NW Yeon Ave, Portland, OR 97210",
+      "taxId": "US-93-1122334"
+    },
+    "invoiceNumber": "CWF-77120",
+    "issueDate": "2024-03-28",
+    "dueDate": "2024-04-27",
+    "currency": "USD",
+    "lineItems": [
+      {
+        "description": "Organic flour, 25kg sack",
+        "qty": 20,
+        "unitPrice": 34,
+        "amount": 680
+      },
+      {
+        "description": "Cane sugar, 25kg sack",
+        "qty": 15,
+        "unitPrice": 28.5,
+        "amount": 427.5
+      },
+      {
+        "description": "Olive oil, 5L tin",
+        "qty": 24,
+        "unitPrice": 41.25,
+        "amount": 990
+      },
+      {
+        "description": "Sea salt, 10kg bag",
+        "qty": 30,
+        "unitPrice": 12.8,
+        "amount": 384
+      },
+      {
+        "description": "Black peppercorns, 5kg",
+        "qty": 8,
+        "unitPrice": 64.5,
+        "amount": 516
+      },
+      {
+        "description": "Canned tomatoes, case of 12",
+        "qty": 40,
+        "unitPrice": 18.9,
+        "amount": 756
+      },
+      {
+        "description": "Dried pasta, 10kg box",
+        "qty": 22,
+        "unitPrice": 26.4,
+        "amount": 580.8
+      },
+      {
+        "description": "Yeast, 1kg vacuum pack",
+        "qty": 18,
+        "unitPrice": 9.95,
+        "amount": 179.1
+      },
+      {
+        "description": "Baking soda, 5kg",
+        "qty": 12,
+        "unitPrice": 7.5,
+        "amount": 90
+      },
+      {
+        "description": "Vanilla extract, 1L",
+        "qty": 6,
+        "unitPrice": 58,
+        "amount": 348
+      },
+      {
+        "description": "Cocoa powder, 5kg",
+        "qty": 9,
+        "unitPrice": 44.2,
+        "amount": 397.8
+      },
+      {
+        "description": "Delivery surcharge",
+        "qty": 1,
+        "unitPrice": 120,
+        "amount": 120
+      }
+    ],
+    "subtotal": 5469.2,
+    "tax": 437.54,
+    "total": 5906.74
+  },
+  "expectedAnomalies": []
+}

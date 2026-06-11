@@ -1,0 +1,38 @@
+{
+  "stresses": "EUR currency, European number format (1.234,56)",
+  "expected": {
+    "vendor": {
+      "name": "Nordlicht Components GmbH",
+      "address": "Hafenstraße 18, 20095 Hamburg, Germany",
+      "taxId": "DE811223344"
+    },
+    "invoiceNumber": "NL-9931",
+    "issueDate": "2024-02-12",
+    "dueDate": "2024-03-13",
+    "currency": "EUR",
+    "lineItems": [
+      {
+        "description": "Aluminium profile 40x40, 2m",
+        "qty": 25,
+        "unitPrice": 18.9,
+        "amount": 472.5
+      },
+      {
+        "description": "Corner brackets, zinc",
+        "qty": 100,
+        "unitPrice": 1.45,
+        "amount": 145
+      },
+      {
+        "description": "Assembly service (hours)",
+        "qty": 6,
+        "unitPrice": 65,
+        "amount": 390
+      }
+    ],
+    "subtotal": 1007.5,
+    "tax": 191.43,
+    "total": 1198.93
+  },
+  "expectedAnomalies": []
+}

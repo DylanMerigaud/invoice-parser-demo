@@ -1,0 +1,46 @@
+{
+  "stresses": "Duplicate line items (possible double charge)",
+  "expected": {
+    "vendor": {
+      "name": "Summit Cloud Services",
+      "address": "500 Tech Pkwy, Austin, TX 78701",
+      "taxId": "US-45-9988776"
+    },
+    "invoiceNumber": "SCS-30277",
+    "issueDate": "2024-04-01",
+    "dueDate": "2024-04-15",
+    "currency": "USD",
+    "lineItems": [
+      {
+        "description": "Compute instance (monthly)",
+        "qty": 1,
+        "unitPrice": 420,
+        "amount": 420
+      },
+      {
+        "description": "Object storage (TB)",
+        "qty": 5,
+        "unitPrice": 23,
+        "amount": 115
+      },
+      {
+        "description": "Compute instance (monthly)",
+        "qty": 1,
+        "unitPrice": 420,
+        "amount": 420
+      },
+      {
+        "description": "Support plan",
+        "qty": 1,
+        "unitPrice": 99,
+        "amount": 99
+      }
+    ],
+    "subtotal": 1054,
+    "tax": 86.96,
+    "total": 1140.96
+  },
+  "expectedAnomalies": [
+    "duplicate_line_items"
+  ]
+}

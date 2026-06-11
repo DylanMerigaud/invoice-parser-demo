@@ -1,0 +1,38 @@
+{
+  "stresses": "Hebrew RTL invoice (ILS, non-Latin script)",
+  "expected": {
+    "vendor": {
+      "name": "מזרחי טכנולוגיות בע״מ",
+      "address": "רחוב הברזל, תל אביב",
+      "taxId": "51-432198-7"
+    },
+    "invoiceNumber": "2024-5567",
+    "issueDate": "2024-05-14",
+    "dueDate": "2024-06-13",
+    "currency": "ILS",
+    "lineItems": [
+      {
+        "description": "שעות פיתוח תוכנה",
+        "qty": 40,
+        "unitPrice": 45,
+        "amount": 1800
+      },
+      {
+        "description": "אחסון בענן חודשי",
+        "qty": 1,
+        "unitPrice": 1200,
+        "amount": 1200
+      },
+      {
+        "description": "תמיכה טכנית",
+        "qty": 1,
+        "unitPrice": 450,
+        "amount": 450
+      }
+    ],
+    "subtotal": 3450,
+    "tax": 586.5,
+    "total": 4036.5
+  },
+  "expectedAnomalies": []
+}

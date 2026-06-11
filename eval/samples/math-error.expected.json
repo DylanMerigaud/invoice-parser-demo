@@ -1,0 +1,40 @@
+{
+  "stresses": "Deliberate math error (line items ≠ subtotal)",
+  "expected": {
+    "vendor": {
+      "name": "Brightpath Marketing LLC",
+      "address": "55 W 21st St, New York, NY 10010",
+      "taxId": "US-88-7766554"
+    },
+    "invoiceNumber": "BP-1042",
+    "issueDate": "2024-01-22",
+    "dueDate": "2024-02-21",
+    "currency": "USD",
+    "lineItems": [
+      {
+        "description": "Landing page design",
+        "qty": 1,
+        "unitPrice": 2500,
+        "amount": 2500
+      },
+      {
+        "description": "Copywriting (per page)",
+        "qty": 5,
+        "unitPrice": 200,
+        "amount": 1000
+      },
+      {
+        "description": "Stock photography license",
+        "qty": 1,
+        "unitPrice": 700,
+        "amount": 700
+      }
+    ],
+    "subtotal": 4000,
+    "tax": 320,
+    "total": 4320
+  },
+  "expectedAnomalies": [
+    "line_items_sum_mismatch"
+  ]
+}
