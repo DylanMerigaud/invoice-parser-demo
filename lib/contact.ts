@@ -3,7 +3,7 @@
 export const AUTHOR = "Dylan Merigaud";
 
 export const CONTACT = {
-  github: "https://github.com/DylanMerigaud/invoice-parser-demo",
+  github: "https://github.com/DylanMerigaud/ai-invoice-parser",
   linkedin: "https://www.linkedin.com/in/dylanmerigaud/",
   email: "dylanmerigaud.pro@gmail.com",
 } as const;
