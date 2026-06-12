@@ -4,13 +4,11 @@ Drop a PDF invoice → get back a **schema-validated** structured object plus **
 
 ### ▶︎ [Try the live demo →](https://invoice-parser-demo-rho.vercel.app/)
 
-> **Built in an afternoon.** This is a deliberately small, finished, deployable MVP. The point isn't feature breadth — it's that the boring production parts (validation, error handling, rate limiting, evals) are all here and working, because that's what actually separates a demo from something you'd put in front of an AP team.
+> A deliberately small, finished, deployable MVP. The point isn't feature breadth — it's that the production parts (validation, error handling, rate limiting, evals) are all here and working, which is what separates a toy from something you'd put in front of an AP team.
 
 ![stack](https://img.shields.io/badge/Next.js-15-black) ![ts](https://img.shields.io/badge/TypeScript-strict-3178c6) ![model](https://img.shields.io/badge/Claude-Sonnet_4.6-4F46E5) ![db](https://img.shields.io/badge/database-none-6B7280)
 
-![Parsing a Hebrew (right-to-left) invoice end to end: extracted vendor, line items, totals, and passing consistency checks](docs/demo.gif)
-
-> Parsing a Hebrew, right-to-left invoice end to end — extracted into structured fields with all consistency checks passing.
+![Parsing a Hebrew right-to-left invoice end to end: extracted vendor, line items, and totals with all consistency checks passing](docs/demo.gif)
 
 ---
 
@@ -74,7 +72,7 @@ eval/   (standalone — runs the SAME extract + detect pipeline)
   run.ts  →  per-field accuracy + anomaly precision/recall, summary table
 ```
 
-**Design choices worth calling out** (they're the pitch):
+**Design choices worth calling out:**
 
 - **Validation at every boundary.** The upload is size-capped (a `Content-Length` pre-check before buffering, plus an authoritative post-parse check) and verified by PDF magic bytes — not a trusted `Content-Type`. The model output is never trusted either — it's `safeParse`d, and on failure the API surfaces the exact Zod issues to the UI rather than guessing or 500-ing.
 - **Stateless, no database.** The PDF lives only in the request. Nothing is persisted. Deploys to Vercel as-is.
@@ -86,11 +84,11 @@ eval/   (standalone — runs the SAME extract + detect pipeline)
 
 Next.js 15 (App Router) · TypeScript (strict, `noUncheckedIndexedAccess`) · Tailwind · `@anthropic-ai/sdk` (`claude-sonnet-4-6`) · Zod + `zod-to-json-schema` · `@upstash/ratelimit` + `@upstash/redis` · `pdf-lib` + `@pdf-lib/fontkit` (sample generation, incl. an embedded Hebrew font for the RTL sample) · `tsx` (eval runner + tests).
 
-The pure logic — the anomaly detectors and the eval scorer — is unit-tested with Node's built-in test runner (no extra deps): `pnpm test`. `pnpm typecheck` runs `tsc --noEmit` under strict mode (`noUnusedLocals` / `noUnusedParameters` catch dead code *within* a file), and `pnpm knip` catches dead code *across* the project — unused exports, files, and dependencies. Three cheap gates, no ESLint config to babysit.
+The pure logic is unit-tested with Node's built-in test runner (no extra deps): `pnpm test` — 56 tests covering the Zod schema (what's accepted vs rejected), the anomaly detectors, the defensive JSON extraction, the display formatters, and the eval scorer. `pnpm typecheck` runs `tsc --noEmit` under strict mode (`noUnusedLocals` / `noUnusedParameters` catch dead code *within* a file), and `pnpm knip` catches dead code *across* the project — unused exports, files, and dependencies. Three cheap gates, no ESLint config to babysit.
 
 ---
 
-## The eval harness (the selling point)
+## The eval harness
 
 A single demo PDF proves nothing. The `eval/` folder contains **9 sample invoices, each engineered to break the parser in a different way**, with a ground-truth `expected.json` per sample. `pnpm eval` runs every PDF through the live pipeline and reports per-field accuracy and anomaly precision/recall.
 
@@ -135,9 +133,7 @@ Summary
 
 Real numbers from one `pnpm eval` run (`claude-sonnet-4-6`, committed to `eval/results.json` and shown on the landing badge): every field extracted correctly across all nine formats, every anomaly caught with no false positives.
 
-It wasn't 100% on the first run — and that's the point of having an eval. The Hebrew RTL sample initially scored 91%: the model dropped a one-character preposition in one line item. Digging in, the bug was in the **sample renderer**, not the parser — a stray right-to-left reordering step was corrupting the Hebrew glyphs in the generated PDF, so the model was faithfully reading a broken document. Removing that step (the embedded font already renders RTL correctly) fixed the PDF and the score went to 100% — *and* deleted ~25 lines of code. The eval caught a real defect; it just happened to be in the test data.
-
-> Re-run `pnpm eval` any time to refresh the numbers. `pnpm eval --dry-run` (which scores the ground truth against itself, no API calls) returns **100% on every field and anomaly**, confirming the corpus is internally consistent and the scoring is correct before a single token is spent.
+> Re-run `pnpm eval` any time to refresh the numbers. `pnpm eval --dry-run` scores the ground truth against itself (no API calls), confirming the corpus and scoring are internally consistent before spending a token.
 
 ---
 
