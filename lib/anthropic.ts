@@ -166,8 +166,9 @@ function firstText(message: Anthropic.Message): string {
  * Pull a JSON object out of the model's text. With structured outputs the whole
  * response should already be valid JSON, but we stay defensive: strip code
  * fences and, as a last resort, slice from the first "{" to the last "}".
+ * Exported for unit testing.
  */
-function extractJsonObject(text: string): unknown {
+export function extractJsonObject(text: string): unknown {
   const tryParse = (s: string): unknown | undefined => {
     try {
       return JSON.parse(s);
