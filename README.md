@@ -216,3 +216,9 @@ I build production-grade AI features fast — available for freelance / contract
 - **LinkedIn** — [in/dylanmerigaud](https://www.linkedin.com/in/dylanmerigaud/)
 - **Email** — [dylanmerigaud.pro@gmail.com](mailto:dylanmerigaud.pro@gmail.com)
 
+---
+
+## License
+
+[MIT](LICENSE) — use it however you like. The bundled Noto Sans Hebrew font (`eval/fonts/`) is licensed separately under the [SIL Open Font License 1.1](eval/fonts/OFL.txt).
+
