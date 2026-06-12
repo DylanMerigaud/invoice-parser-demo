@@ -6,7 +6,7 @@ Drop a PDF invoice → get back a **schema-validated** structured object plus **
 
 > A deliberately small, finished, deployable MVP. The point isn't feature breadth — it's that the production parts (validation, error handling, rate limiting, evals) are all here and working, which is what separates a toy from something you'd put in front of an AP team.
 
-![stack](https://img.shields.io/badge/Next.js-15-black) ![ts](https://img.shields.io/badge/TypeScript-strict-3178c6) ![model](https://img.shields.io/badge/Claude-Sonnet_4.6-4F46E5) ![db](https://img.shields.io/badge/database-none-6B7280)
+![stack](https://img.shields.io/badge/Next.js-15-black) ![ts](https://img.shields.io/badge/TypeScript-strict-3178c6) ![model](https://img.shields.io/badge/Claude-Sonnet_4.6-4F46E5) ![eval](https://img.shields.io/badge/eval-100%25%20%C2%B7%209%20formats-047857) ![db](https://img.shields.io/badge/database-none-6B7280)
 
 ![Parsing a Hebrew right-to-left invoice end to end: extracted vendor, line items, and totals with all consistency checks passing](docs/demo.gif)
 
