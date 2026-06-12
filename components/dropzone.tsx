@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export interface SampleInvoice {
@@ -8,6 +9,8 @@ export interface SampleInvoice {
   label: string;
   /** Path under /public, e.g. /samples/clean-acme.pdf */
   file: string;
+  /** First-page PNG thumbnail under /public, shown in the hover preview. */
+  preview: string;
 }
 
 export function Dropzone({
@@ -22,6 +25,10 @@ export function Dropzone({
   disabled?: boolean;
 }) {
   const [dragOver, setDragOver] = useState(false);
+  // The sample currently hovered/focused — its thumbnail previews inside the
+  // dropzone (which has plenty of empty space), so nothing overlaps the layout
+  // and nothing shifts size.
+  const [preview, setPreview] = useState<SampleInvoice | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFiles = useCallback(
@@ -31,6 +38,8 @@ export function Dropzone({
     },
     [onFile],
   );
+
+  const showingPreview = preview !== null && !dragOver;
 
   return (
     <div className="flex flex-col gap-4">
@@ -56,29 +65,66 @@ export function Dropzone({
           if (!disabled) handleFiles(e.dataTransfer.files);
         }}
         className={cn(
-          "flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-14 text-center transition-colors",
+          "relative flex min-h-[320px] cursor-pointer flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border-2 border-dashed px-6 py-14 text-center transition-colors",
           dragOver
             ? "border-accent bg-accent-soft"
             : "border-line bg-surface hover:border-accent/50 hover:bg-canvas",
           disabled && "pointer-events-none opacity-60",
         )}
       >
-        <span
+        {/* Default prompt — fades out while previewing a sample. */}
+        <div
           className={cn(
-            "flex h-12 w-12 items-center justify-center rounded-xl transition-colors",
-            dragOver ? "bg-accent text-white" : "bg-accent-soft text-accent",
+            "flex flex-col items-center gap-3 transition-opacity duration-150",
+            showingPreview ? "opacity-0" : "opacity-100",
           )}
         >
-          <UploadIcon />
-        </span>
-        <div>
-          <p className="text-base font-medium text-ink">
-            {dragOver ? "Drop to parse" : "Drop an invoice PDF here"}
-          </p>
-          <p className="mt-1 text-sm text-muted">
-            or <span className="text-accent">browse</span> · PDF up to 10 MB
-          </p>
+          <span
+            className={cn(
+              "flex h-12 w-12 items-center justify-center rounded-xl transition-colors",
+              dragOver ? "bg-accent text-white" : "bg-accent-soft text-accent",
+            )}
+          >
+            <UploadIcon />
+          </span>
+          <div>
+            <p className="text-base font-medium text-ink">
+              {dragOver ? "Drop to parse" : "Drop an invoice PDF here"}
+            </p>
+            <p className="mt-1 text-sm text-muted">
+              or <span className="text-accent">browse</span> · PDF up to 10 MB
+            </p>
+          </div>
         </div>
+
+        {/* Sample preview overlay — absolutely positioned so it never resizes
+            the dropzone; pointer-events-none so the dropzone stays clickable. */}
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-0 flex items-center justify-center gap-4 px-6 transition-opacity duration-150",
+            showingPreview ? "opacity-100" : "opacity-0",
+          )}
+        >
+          {preview && (
+            <>
+              <Image
+                src={preview.preview}
+                alt=""
+                width={579}
+                height={819}
+                className="h-[260px] w-auto rounded-md border border-line bg-white shadow-lift"
+                unoptimized
+              />
+              <p className="max-w-[180px] text-left text-sm text-muted">
+                <span className="font-medium text-ink">{preview.label}</span>
+                <br />
+                Click the button below to parse this example.
+              </p>
+            </>
+          )}
+        </div>
+
         <input
           ref={inputRef}
           type="file"
@@ -99,6 +145,10 @@ export function Dropzone({
                 key={s.id}
                 disabled={disabled}
                 onClick={() => onSample(s)}
+                onMouseEnter={() => setPreview(s)}
+                onMouseLeave={() => setPreview((p) => (p?.id === s.id ? null : p))}
+                onFocus={() => setPreview(s)}
+                onBlur={() => setPreview((p) => (p?.id === s.id ? null : p))}
                 className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:border-accent/50 hover:bg-accent-soft hover:text-accent disabled:pointer-events-none disabled:opacity-60"
               >
                 {s.label}
