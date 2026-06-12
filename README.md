@@ -2,9 +2,15 @@
 
 Drop a PDF invoice → get back a **schema-validated** structured object plus **automated consistency checks**. Built as a focused demo of shipping production-grade AI: strict typing, runtime validation at every boundary, graceful failure, and an eval harness that proves it survives messy real-world formats — not just one happy-path PDF.
 
+### ▶︎ [Try the live demo →](https://invoice-parser-demo-rho.vercel.app/)
+
 > **Built in an afternoon.** This is a deliberately small, finished, deployable MVP. The point isn't feature breadth — it's that the boring production parts (validation, error handling, rate limiting, evals) are all here and working, because that's what actually separates a demo from something you'd put in front of an AP team.
 
 ![stack](https://img.shields.io/badge/Next.js-15-black) ![ts](https://img.shields.io/badge/TypeScript-strict-3178c6) ![model](https://img.shields.io/badge/Claude-Sonnet_4.6-4F46E5) ![db](https://img.shields.io/badge/database-none-6B7280)
+
+![Parsing a Hebrew (right-to-left) invoice end to end: extracted vendor, line items, totals, and passing consistency checks](docs/demo.gif)
+
+> Parsing a Hebrew, right-to-left invoice end to end — extracted into structured fields with all consistency checks passing.
 
 ---
 
@@ -198,5 +204,15 @@ eval/
 - **Money tolerance.** Floating-point invoice totals accumulate per-line rounding, so the reconciliation checks allow a small tolerance (one cent per line + a relative floor) rather than demanding exact equality.
 - **Scanned realism.** The "scanned" sample degrades contrast and adds speckle noise rather than truly rasterizing the page (which would need a headless rendering pipeline). It's a proxy for a non-pristine document, enough to exercise the vision path.
 - **What I'd add next:** real (anonymized) invoices in the eval set, citations/bounding-boxes for each extracted field, a confidence signal per field, and batch upload.
-```
+
+---
+
+## Contact
+
+I build production-grade AI features fast — available for freelance / contract work in fintech & AI. If this is the kind of thing you'd want shipped, let's talk.
+
+- **Live demo** — <https://invoice-parser-demo-rho.vercel.app/>
+- **GitHub** — [@DylanMerigaud](https://github.com/DylanMerigaud)
+- **LinkedIn** — [in/dylanmerigaud](https://www.linkedin.com/in/dylanmerigaud/)
+- **Email** — [dylanmerigaud.pro@gmail.com](mailto:dylanmerigaud.pro@gmail.com)
 
