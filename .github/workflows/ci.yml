@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: typecheck · lint · test · build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Dead-code check (knip)
+        run: pnpm knip
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      # The eval harness is intentionally NOT run here: it calls the Anthropic
+      # API (costs tokens, needs a secret). `pnpm eval --dry-run` validates the
+      # corpus + scoring offline, so run that instead of the live eval.
+      - name: Eval harness (dry-run, no API calls)
+        run: pnpm eval --dry-run
