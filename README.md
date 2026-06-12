@@ -2,7 +2,7 @@
 
 Drop a PDF invoice → get back a **schema-validated** structured object plus **automated consistency checks**. Built as a focused demo of shipping production-grade AI: strict typing, runtime validation at every boundary, graceful failure, and an eval harness that proves it survives messy real-world formats — not just one happy-path PDF.
 
-### ▶︎ [Try the live demo →](https://invoice-parser-demo-rho.vercel.app/)
+### ▶︎ [Try the live demo →](https://ai-invoice-parser-rho.vercel.app/)
 
 > A deliberately small, finished, deployable MVP. The point isn't feature breadth — it's that the production parts (validation, error handling, rate limiting, evals) are all here and working, which is what separates a toy from something you'd put in front of an AP team.
 
@@ -207,7 +207,7 @@ eval/
 
 I build production-grade AI features fast — available for freelance / contract work in fintech & AI. If this is the kind of thing you'd want shipped, let's talk.
 
-- **Live demo** — <https://invoice-parser-demo-rho.vercel.app/>
+- **Live demo** — <https://ai-invoice-parser-rho.vercel.app/>
 - **GitHub** — [@DylanMerigaud](https://github.com/DylanMerigaud)
 - **LinkedIn** — [in/dylanmerigaud](https://www.linkedin.com/in/dylanmerigaud/)
 - **Email** — [dylanmerigaud.pro@gmail.com](mailto:dylanmerigaud.pro@gmail.com)
