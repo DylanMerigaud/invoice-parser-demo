@@ -1,6 +1,8 @@
 import { ParserClient } from "@/components/parser-client";
 import { EvalBadge } from "@/components/eval-badge";
+import { SocialLinks } from "@/components/social-links";
 import { loadEvalResults } from "@/lib/eval-results";
+import { AUTHOR } from "@/lib/contact";
 
 // Read eval/results.json fresh on each request so a new `pnpm eval` shows up
 // without a rebuild in dev.
@@ -56,15 +58,25 @@ function Header() {
 function Footer() {
   return (
     <footer className="mt-auto pt-12">
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-line pt-5 text-xs text-muted">
-        <span>Stateless — your PDF is never stored.</span>
-        <span aria-hidden>·</span>
-        <span>Rate-limited per IP.</span>
-        <span aria-hidden>·</span>
-        <span>
-          Extraction by{" "}
-          <span className="font-mono text-ink/70">claude-sonnet-4-6</span>.
-        </span>
+      <div className="flex flex-col gap-4 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-1 text-xs text-muted">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>Stateless — your PDF is never stored.</span>
+            <span aria-hidden>·</span>
+            <span>Rate-limited per IP.</span>
+            <span aria-hidden>·</span>
+            <span>
+              Extraction by{" "}
+              <span className="font-mono text-ink/70">claude-sonnet-4-6</span>.
+            </span>
+          </div>
+          <span>
+            Built by{" "}
+            <span className="font-medium text-ink/70">{AUTHOR}</span> — available
+            for AI / fintech work.
+          </span>
+        </div>
+        <SocialLinks />
       </div>
     </footer>
   );
